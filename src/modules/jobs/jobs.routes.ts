@@ -19,6 +19,8 @@ const jobsRouter = Router();
 
 jobsRouter.get("/", checkAuth, getJobsInfo);
 jobsRouter.get("/filter", checkAuth, getFilteredJobs);
+jobsRouter.get(`/company`, checkAuth, getCompanyJobs);
+
 jobsRouter.post(
   "/",
   validate(createJobValidation),
@@ -26,7 +28,7 @@ jobsRouter.post(
   validateRole,
   addJob
 );
-jobsRouter.get(`/company`, checkAuth, getCompanyJobs);
+jobsRouter.post("/apply/:jobId", checkAuth, upload.single("file"), applyToJob);
 
 jobsRouter.patch(
   "/:jobId",
@@ -35,7 +37,5 @@ jobsRouter.patch(
   validateRole,
   updateJob
 );
-
 jobsRouter.delete("/:jobId", checkAuth, validateRole, deleteJob);
-jobsRouter.post("/apply/:jobId", checkAuth, upload.single("file"), applyToJob);
 export default jobsRouter;

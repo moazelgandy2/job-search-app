@@ -1152,6 +1152,7 @@ var upload = (0, import_multer.default)({ storage: import_multer.default.memoryS
 var jobsRouter = (0, import_express3.Router)();
 jobsRouter.get("/", checkAuth, getJobsInfo);
 jobsRouter.get("/filter", checkAuth, getFilteredJobs);
+jobsRouter.get(`/company`, checkAuth, getCompanyJobs);
 jobsRouter.post(
   "/",
   validate(createJobValidation),
@@ -1159,7 +1160,7 @@ jobsRouter.post(
   validateRole,
   addJob
 );
-jobsRouter.get(`/company`, checkAuth, getCompanyJobs);
+jobsRouter.post("/apply/:jobId", checkAuth, upload.single("file"), applyToJob);
 jobsRouter.patch(
   "/:jobId",
   validate(updateJobValidation),
@@ -1168,7 +1169,6 @@ jobsRouter.patch(
   updateJob
 );
 jobsRouter.delete("/:jobId", checkAuth, validateRole, deleteJob);
-jobsRouter.post("/apply/:jobId", checkAuth, upload.single("file"), applyToJob);
 var jobs_routes_default = jobsRouter;
 
 // src/index.ts
