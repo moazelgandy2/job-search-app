@@ -2,7 +2,6 @@
   "name": "job-search-app",
   "version": "1.0.0",
   "main": "./src/index.ts",
-  "types": "./src/index.d.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
