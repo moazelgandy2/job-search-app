@@ -8,7 +8,7 @@ import companyRouter from "./modules/company/company.routes";
 import jobsRouter from "./modules/jobs/jobs.routes";
 
 const app = express();
-const port = 3000;
+const port = 8080;
 
 app.use(express.json());
 
